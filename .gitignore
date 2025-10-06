@@ -55,3 +55,4 @@ results/
 # Environment variables
 .env
 .venv
+*.ipynb
