@@ -114,7 +114,6 @@ def execute_command(line, memory):
         lst = memory.get(name)
         if lst is None:
             raise Exception(f"List '{name}' not found")
-        # Конвертируем 1-based индекс в 0-based
         index_0based = int(index) - 1
         if index_0based < 0 or index_0based >= lst.length():
             raise IndexError(f"Index {index} out of bounds for list of length {lst.length()}")
@@ -128,7 +127,6 @@ def execute_command(line, memory):
         lst = memory.get(name)
         if lst is None:
             raise Exception(f"List '{name}' not found")
-        # Конвертируем 1-based индекс в 0-based
         index_0based = int(index) - 1
         if index_0based < 0 or index_0based >= lst.length():
             raise IndexError(f"Index {index} out of bounds for list of length {lst.length()}")
