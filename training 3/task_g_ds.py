@@ -1,0 +1,38 @@
+import bisect
+
+def main():
+    n = int(input())
+    a_orig = list(map(int, input().strip().split()))
+    m = int(input())
+    b_orig = list(map(int, input().strip().split()))
+
+    a = sorted(a_orig)
+    b = sorted(b_orig)
+
+    a_prefix = [0] * (len(a) + 1)
+    b_prefix = [0] * (len(b) + 1)
+    for i in range(len(a)):
+        a_prefix[i + 1] = a_prefix[i] + a[i]
+    for j in range(len(b)):
+        b_prefix[j + 1] = b_prefix[j] + b[j]
+
+    sum1 = 0 
+    sum2 = 0
+    for i in range(len(a_orig)):
+        current_el = a_orig[i]
+        el_ind = bisect.bisect_right(b, current_el)
+        left_sum = current_el * el_ind - b_prefix[el_ind]
+        right_sum = (b_prefix[-1] - b_prefix[el_ind]) - (len(b) - el_ind) * current_el
+        sum1 = sum1 + (i + 1) * (left_sum + right_sum)
+
+    for i in range(len(b_orig)):
+        current_el = b_orig[i]
+        el_ind = bisect.bisect_right(a, current_el)
+        left_sum = current_el * el_ind - a_prefix[el_ind]
+        right_sum = (a_prefix[-1] - a_prefix[el_ind]) - (len(a) - el_ind) * current_el
+        sum2 = sum2 + (i + 1) * (left_sum + right_sum)
+    print(sum1 - sum2)
+    return 0
+
+if __name__ == "__main__":
+    main()

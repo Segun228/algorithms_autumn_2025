@@ -55,4 +55,7 @@ results/
 # Environment variables
 .env
 .venv
-*.ipynb
+
+
+*.csv
+*.xlsx
